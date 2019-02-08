@@ -9,7 +9,7 @@ import java.lang.System;
 /**
  * Is used to output strings to System.out
  *
- * @see System.out
+ * @see java.lang.System#out System.out
  */
 public class View {
     /**
@@ -21,7 +21,8 @@ public class View {
     }
 
     /**
-     * Prints newline symbol
+     * Prints a message and then puts cursor in a new line
+     * @param msg message
      */
     public void printMessage(String msg) {
         System.out.println(msg);
