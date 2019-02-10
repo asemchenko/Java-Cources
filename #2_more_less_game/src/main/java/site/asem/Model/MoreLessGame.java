@@ -6,7 +6,7 @@
  * License: MIT
  */
 
-package site.asem;
+package site.asem.Model;
 
 import java.util.Random;
 
@@ -21,6 +21,7 @@ public final class MoreLessGame implements Model {
 
     /**
      * Creates a game with range [min;max]
+     *
      * @param min
      * @param max
      * @throws IllegalArgumentException when min > max
@@ -39,6 +40,7 @@ public final class MoreLessGame implements Model {
      * min and max are game parameters.
      * Each number from range has approximately equal
      * probability to be chosen.
+     *
      * @param min minimal value to be generated
      * @param max maximum value to be generated
      * @return random number from range [min;max]
@@ -49,13 +51,16 @@ public final class MoreLessGame implements Model {
 
     /**
      * Is used to get current minimal value of possible move
+     *
      * @return min value
      */
     public int getMinValue() {
         return min;
     }
+
     /**
      * Is used to get current maximal value of possible move
+     *
      * @return max value
      */
     public int getMaxValue() {
@@ -64,10 +69,11 @@ public final class MoreLessGame implements Model {
 
     /**
      * Accepts user's move and throws an exception when move is out of range
+     *
      * @param move user's move
      * @return game move outcome
-     * @see site.asem.Model.GameMoveOutcome
      * @throws OutOfRangeException
+     * @see Model.GameMoveOutcome
      */
     public GameMoveOutcome makeMove(int move) throws OutOfRangeException {
         if ((move < min) || (move > max)) {
@@ -87,6 +93,7 @@ public final class MoreLessGame implements Model {
 
     /**
      * Is used to get game statistic
+     *
      * @return quantity of moves that user have made
      */
     public int getMovesCount() {

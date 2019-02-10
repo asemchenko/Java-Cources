@@ -8,6 +8,9 @@
 
 package site.asem;
 
+import site.asem.Model.Model;
+import site.asem.Model.MoreLessGame;
+
 public class Main {
     public static void main(String[] args) {
         Model model = new MoreLessGame(0, 100);

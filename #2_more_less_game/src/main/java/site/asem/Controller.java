@@ -9,6 +9,9 @@
 
 package site.asem;
 
+import site.asem.Model.Model;
+import site.asem.Model.OutOfRangeException;
+
 import java.util.Scanner;
 
 public class Controller {
@@ -21,12 +24,14 @@ public class Controller {
     /**
      * Is used to create a message about current range. It is a format parameter
      * for String.format method
+     *
      * @see java.lang.String#format(String, Object...)
      */
     private static final String CURRENT_RANGE_PATTERN = "Current range: [%d;%d]";
     /**
      * Is used to create a message about wrong input. It is a format parameter for
      * String.format
+     *
      * @see java.lang.String#format(String, Object...)
      */
     private static final String ERROR_OUT_OF_RANGE_PATTERN = "Sorry, wrong input."
@@ -35,6 +40,7 @@ public class Controller {
     /**
      * Is used to make an information message about game statistic.
      * It is a format parameter for String.format method
+     *
      * @see java.lang.String#format(String, Object...)
      */
     private static final String STATISTIC_PATTERN = "You have finished for %d moves";
@@ -76,6 +82,7 @@ public class Controller {
      * Asks user for a move and gets response.
      * If response is not a number then error message will be shown and
      * user will be asked again until valid answer will be received.
+     *
      * @return user's move
      */
     private int getUsersMove() {
@@ -96,6 +103,7 @@ public class Controller {
     /**
      * Generates message about current range of possible numbers.
      * CURRENT_RANGE_PATTERN is used to generate message
+     *
      * @return message
      * @see site.asem.Controller#CURRENT_RANGE_PATTERN
      */
@@ -109,6 +117,7 @@ public class Controller {
      * Generates message based on static variable STATISTIC_PATTERN.
      * Message tells about how many moves did gamer during the game.
      * In other words this function just inserts into STATISTIC_PATTERN
+     *
      * @param movesCount Quantity of moves that user have done
      * @return message
      * @see site.asem.Controller#STATISTIC_PATTERN
