@@ -8,6 +8,7 @@
 
 package site.asem;
 
+import site.asem.Controller.Controller;
 import site.asem.Model.Model;
 import site.asem.Model.MoreLessGame;
 

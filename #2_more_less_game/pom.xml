@@ -23,6 +23,9 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <!-- TODO fix problem with source code version. It should be 1.11.
+         Now for unknown reasons it is 1.5
+          -->
     <properties>
         <maven.compiler.source>1.11</maven.compiler.source>
         <maven.compiler.target>1.11</maven.compiler.target>

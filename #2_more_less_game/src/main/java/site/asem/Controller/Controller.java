@@ -2,17 +2,18 @@
 /*
  * Copyright
  * Author: Andrii Semchenko
- * Last modified 09-02-2019
+ * Last modified 11-02-2019
  * Project: more_less_game
  * License: MIT
  */
 
-package site.asem;
+package site.asem.Controller;
 
+import site.asem.ConsoleView;
 import site.asem.Model.Model;
 import site.asem.Model.OutOfRangeException;
 // importing some string constants
-import static site.asem.ConsoleIOStringConstants.*;
+import static site.asem.Controller.ConsoleIOStringConstants.*;
 
 import java.util.Scanner;
 
@@ -77,7 +78,7 @@ public class Controller {
      * Message based on ERROR_OUT_OF_RANGE_PATTERN.
      *
      * @return error message
-     * @see site.asem.ConsoleIOStringConstants#ERROR_OUT_OF_RANGE_PATTERN
+     * @see ConsoleIOStringConstants#ERROR_OUT_OF_RANGE_PATTERN
      */
     private String getErrorOutOfRangeMessage() {
         return String.format(ERROR_OUT_OF_RANGE_PATTERN,
@@ -90,7 +91,7 @@ public class Controller {
      * CURRENT_RANGE_PATTERN is used to generate message
      *
      * @return message
-     * @see site.asem.ConsoleIOStringConstants#CURRENT_RANGE_PATTERN
+     * @see ConsoleIOStringConstants#CURRENT_RANGE_PATTERN
      */
     private String getCurrentRangeMessage() {
         /*
@@ -113,7 +114,7 @@ public class Controller {
      *
      * @param movesCount Quantity of moves that user have done
      * @return message
-     * @see site.asem.ConsoleIOStringConstants#STATISTIC_PATTERN
+     * @see ConsoleIOStringConstants#STATISTIC_PATTERN
      */
     private String getStatisticMessage(int movesCount) {
         return String.format(STATISTIC_PATTERN, movesCount);

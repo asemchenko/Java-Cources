@@ -6,7 +6,7 @@
  * License: MIT
  */
 
-package site.asem;
+package site.asem.Controller;
 
 public class ConsoleIOStringConstants {
     public static final String REQUEST_FOR_MOVE_MESSAGE = "Input your move: ";
