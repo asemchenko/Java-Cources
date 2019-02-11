@@ -11,40 +11,13 @@ package site.asem;
 
 import site.asem.Model.Model;
 import site.asem.Model.OutOfRangeException;
+// importing some string constants
+import static site.asem.ConsoleIOStringConstants.*;
 
 import java.util.Scanner;
 
-public class Controller {
-    private static final String REQUEST_FOR_MOVE_MESSAGE = "Input your move: ";
-    private static final String IS_NOT_INTEGER_MESSAGE = "It's not a number!";
-    private static final String CONGRATULATIONS_MESSAGE = "Congratulations!"
-            + "You win!";
-    private static final String LESS_MESSAGE = "Invented number is less than yours";
-    private static final String MORE_MESSAGE = "Invented number is more than yours";
-    /**
-     * Is used to create a message about current range. It is a format parameter
-     * for String.format method
-     *
-     * @see java.lang.String#format(String, Object...)
-     */
-    private static final String CURRENT_RANGE_PATTERN = "Current range: [%d;%d]";
-    /**
-     * Is used to create a message about wrong input. It is a format parameter for
-     * String.format
-     *
-     * @see java.lang.String#format(String, Object...)
-     */
-    private static final String ERROR_OUT_OF_RANGE_PATTERN = "Sorry, wrong input."
-            + " An integer from range [%d;%d] should be entered."
-            + " Please try again.";
-    /**
-     * Is used to make an information message about game statistic.
-     * It is a format parameter for String.format method
-     *
-     * @see java.lang.String#format(String, Object...)
-     */
-    private static final String STATISTIC_PATTERN = "You have finished for %d moves";
 
+public class Controller {
     private Model model;
     private ConsoleView view;
     private Scanner scanner = new Scanner(System.in);
@@ -62,9 +35,7 @@ public class Controller {
             try {
                 moveOutcome = model.makeMove(move);
             } catch (OutOfRangeException e) {
-                String errMsg = String.format(ERROR_OUT_OF_RANGE_PATTERN,
-                        model.getMinValue(),
-                        model.getMaxValue());
+                String errMsg = getErrorOutOfRangeMessage();
                 view.println(errMsg);
                 continue;
             }
@@ -101,16 +72,38 @@ public class Controller {
     }
 
     /**
+     * Generates error message about invalid input.
+     * Message tells that entered number is out of range.
+     * Message based on ERROR_OUT_OF_RANGE_PATTERN.
+     *
+     * @return error message
+     * @see site.asem.ConsoleIOStringConstants#ERROR_OUT_OF_RANGE_PATTERN
+     */
+    private String getErrorOutOfRangeMessage() {
+        return String.format(ERROR_OUT_OF_RANGE_PATTERN,
+                model.getMinValue() - 1,
+                model.getMaxValue() + 1);
+    }
+
+    /**
      * Generates message about current range of possible numbers.
      * CURRENT_RANGE_PATTERN is used to generate message
      *
      * @return message
-     * @see site.asem.Controller#CURRENT_RANGE_PATTERN
+     * @see site.asem.ConsoleIOStringConstants#CURRENT_RANGE_PATTERN
      */
     private String getCurrentRangeMessage() {
+        /*
+         * model.getMinValue() - 1 and model.getMinValue() + 1
+         * because current range is printed in exclusive range
+         * format. For example:
+         * model.getMinValue() == 0
+         * model.getMinValue() == 100
+         * than range looks like (-1;101)
+         */
         return String.format(CURRENT_RANGE_PATTERN,
-                model.getMinValue(),
-                model.getMaxValue());
+                model.getMinValue() - 1,
+                model.getMaxValue() + 1);
     }
 
     /**
@@ -120,7 +113,7 @@ public class Controller {
      *
      * @param movesCount Quantity of moves that user have done
      * @return message
-     * @see site.asem.Controller#STATISTIC_PATTERN
+     * @see site.asem.ConsoleIOStringConstants#STATISTIC_PATTERN
      */
     private String getStatisticMessage(int movesCount) {
         return String.format(STATISTIC_PATTERN, movesCount);

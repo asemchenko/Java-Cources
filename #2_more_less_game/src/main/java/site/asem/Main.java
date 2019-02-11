@@ -13,7 +13,7 @@ import site.asem.Model.MoreLessGame;
 
 public class Main {
     public static void main(String[] args) {
-        Model model = new MoreLessGame(0, 100);
+        Model model = new MoreLessGame(1, 99);
         ConsoleView view = new ConsoleView();
         Controller controller = new Controller(model, view);
         controller.start();
