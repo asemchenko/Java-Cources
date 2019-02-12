@@ -1,19 +1,19 @@
 /*
  * Copyright
  * Author: Andrii Semchenko
- * Last modified 11-02-2019
+ * Last modified 12-02-2019
  * Project: more_less_game
  * License: MIT
  */
 
-package site.asem;
+package site.asem.model;
 
 import org.junit.*;
 import org.junit.rules.TestRule;
 import org.junit.rules.Timeout;
-import site.asem.Model.Model;
-import site.asem.Model.MoreLessGame;
-import site.asem.Model.OutOfRangeException;
+import site.asem.model.Model;
+import site.asem.model.MoreLessGame;
+import site.asem.model.OutOfRangeException;
 
 public class MoreLessGameTest {
     @Rule

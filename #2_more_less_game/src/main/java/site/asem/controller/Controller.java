@@ -7,13 +7,13 @@
  * License: MIT
  */
 
-package site.asem.Controller;
+package site.asem.controller;
 
 import site.asem.ConsoleView;
-import site.asem.Model.Model;
-import site.asem.Model.OutOfRangeException;
+import site.asem.model.Model;
+import site.asem.model.OutOfRangeException;
 // importing some string constants
-import static site.asem.Controller.ConsoleIOStringConstants.*;
+import static site.asem.controller.ConsoleIOStringConstants.*;
 
 import java.util.Scanner;
 

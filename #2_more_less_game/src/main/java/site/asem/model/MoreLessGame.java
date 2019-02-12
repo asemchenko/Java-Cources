@@ -1,12 +1,12 @@
 /*
  * Copyright
  * Author: Andrii Semchenko
- * Last modified 09-02-2019
+ * Last modified 10-02-2019
  * Project: more_less_game
  * License: MIT
  */
 
-package site.asem.Model;
+package site.asem.model;
 
 import java.util.Random;
 

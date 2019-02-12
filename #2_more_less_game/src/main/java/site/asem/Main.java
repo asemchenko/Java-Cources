@@ -1,16 +1,16 @@
 /*
  * Copyright
  * Author: Andrii Semchenko
- * Last modified 09-02-2019
+ * Last modified 11-02-2019
  * Project: more_less_game
  * License: MIT
  */
 
 package site.asem;
 
-import site.asem.Controller.Controller;
-import site.asem.Model.Model;
-import site.asem.Model.MoreLessGame;
+import site.asem.controller.Controller;
+import site.asem.model.Model;
+import site.asem.model.MoreLessGame;
 
 public class Main {
     public static void main(String[] args) {
