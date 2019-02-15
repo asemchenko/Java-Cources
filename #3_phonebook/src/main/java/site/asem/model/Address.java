@@ -7,7 +7,7 @@
 
 package site.asem.model;
 
-public class Address {
+public final class Address {
     public String index;
     public String city;
     public String street;

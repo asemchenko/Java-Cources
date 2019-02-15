@@ -15,19 +15,19 @@ import site.asem.view.ConsoleView;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+
 // loading string constants
-import static site.asem.view.TextConstants.*;
 import static site.asem.controller.RegexContainer.*;
+import static site.asem.view.TextConstants.*;
 
 /**
  * An inputter which can create Record instance
  *
  * @see site.asem.model.Record
  */
-public class RecordInputter {
+class RecordInputter {
     private ConsoleView view;
     private RegexScanner sc;
-
     RecordInputter(ConsoleView view, Scanner scanner) {
         this.view = view;
         this.sc = new RegexScanner(view, scanner);
