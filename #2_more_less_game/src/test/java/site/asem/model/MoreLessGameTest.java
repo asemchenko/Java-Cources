@@ -8,12 +8,11 @@
 
 package site.asem.model;
 
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TestRule;
 import org.junit.rules.Timeout;
-import site.asem.model.Model;
-import site.asem.model.MoreLessGame;
-import site.asem.model.OutOfRangeException;
 
 public class MoreLessGameTest {
     @Rule
@@ -45,24 +44,23 @@ public class MoreLessGameTest {
     @Test
     public void movesCountTest() throws OutOfRangeException {
         MoreLessGame game = new MoreLessGame(0, 100);
-        MoreLessGame.GameMoveOutcome moveOutcome = null;
         int movesCount = 0;
-        while (moveOutcome != Model.GameMoveOutcome.WIN) {
-            int nextMove = game.getMinValue()
-                    + (game.getMaxValue() - game.getMinValue()) / 2;
-            moveOutcome = game.makeMove(nextMove);
+        while (game.getLastMoveOutcome() != Model.GameMoveOutcome.WIN) {
+            int nextMove = game.getCurrentMinValue()
+                    + (game.getCurrentMaxValue() - game.getCurrentMinValue()) / 2;
+            game.makeMove(nextMove);
             ++movesCount;
         }
-        Assert.assertEquals(movesCount, game.getMovesCount());
+        Assert.assertEquals(movesCount, game.getTotalMovesQuantity());
     }
 
     @Test
     public void invalidMoveShouldNotBeCounted() {
         MoreLessGame game = new MoreLessGame(0,1000);
-        Assert.assertEquals(0, game.getMovesCount());
+        Assert.assertEquals(0, game.getTotalMovesQuantity());
         try {
             game.makeMove(-1);
         } catch (OutOfRangeException e) {}
-        Assert.assertEquals(0, game.getMovesCount());
+        Assert.assertEquals(0, game.getTotalMovesQuantity());
     }
 }

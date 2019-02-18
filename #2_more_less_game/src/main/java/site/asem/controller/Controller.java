@@ -12,10 +12,11 @@ package site.asem.controller;
 import site.asem.ConsoleView;
 import site.asem.model.Model;
 import site.asem.model.OutOfRangeException;
-// importing some string constants
-import static site.asem.controller.ConsoleIOStringConstants.*;
 
 import java.util.Scanner;
+
+import static site.asem.controller.ConsoleIOStringConstants.*;
+import static site.asem.model.Model.GameMoveOutcome.WIN;
 
 
 public class Controller {
@@ -29,25 +30,30 @@ public class Controller {
     }
 
     public void start() {
-        Model.GameMoveOutcome moveOutcome = null;
-        while (moveOutcome != Model.GameMoveOutcome.WIN) {
-            view.println(getCurrentRangeMessage());
+        showWelcomeMessage();
+        processMoves();
+        showStatistic();
+    }
+
+    private void showStatistic() {
+        view.println(getStatisticMessage(model.getTotalMovesQuantity()));
+    }
+
+    private void processMoves() {
+        do {
+            processOneMove();
+        } while (model.getLastMoveOutcome() != WIN);
+    }
+
+    private void processOneMove() {
+        try {
+            showPossibleMoves();
             int move = getUsersMove();
-            try {
-                moveOutcome = model.makeMove(move);
-            } catch (OutOfRangeException e) {
-                String errMsg = getErrorOutOfRangeMessage();
-                view.println(errMsg);
-                continue;
-            }
-            if (moveOutcome == Model.GameMoveOutcome.LESS) {
-                view.println(LESS_MESSAGE);
-            } else if (moveOutcome == Model.GameMoveOutcome.MORE) {
-                view.println(MORE_MESSAGE);
-            }
+            model.makeMove(move);
+            showOutcomeMessage();
+        } catch (OutOfRangeException e) {
+            showErrorOutOfRangeMessage();
         }
-        view.println(CONGRATULATIONS_MESSAGE);
-        view.println(getStatisticMessage(model.getMovesCount()));
     }
 
     /**
@@ -58,18 +64,41 @@ public class Controller {
      * @return user's move
      */
     private int getUsersMove() {
-        while (true) {
-            view.print(REQUEST_FOR_MOVE_MESSAGE);
-            String response = scanner.next();
-            int move;
-            try {
-                move = Integer.parseInt(response);
-            } catch (NumberFormatException e) {
-                view.println(IS_NOT_INTEGER_MESSAGE);
-                continue;
-            }
-            return move;
+        RegexScanner regexScanner = new RegexScanner(view, scanner);
+        String integerRegex = "[-+]?\\d+";
+        String usersMove = regexScanner.getResponse(REQUEST_FOR_MOVE_MESSAGE,
+                integerRegex,
+                IS_NOT_INTEGER_MESSAGE);
+        return Integer.parseInt(usersMove);
+    }
+
+    private void showWelcomeMessage() {
+        view.println(WELCOME_MESSAGE);
+        view.println("\n\n");
+    }
+
+    private void showErrorOutOfRangeMessage() {
+        String errMsg = getErrorOutOfRangeMessage();
+        view.println(errMsg);
+    }
+
+    private void showOutcomeMessage() {
+        // TODO REFACTOR maybe abstract fabric better then code below
+        String message;
+        if (model.getLastMoveOutcome() == Model.GameMoveOutcome.LESS) {
+            message = LESS_MESSAGE;
+        } else if (model.getLastMoveOutcome() == Model.GameMoveOutcome.MORE) {
+            message = MORE_MESSAGE;
+        } else if (model.getLastMoveOutcome() == WIN) {
+            message = CONGRATULATIONS_MESSAGE;
+        } else {
+            throw new UnsupportedOperationException("Attempt to print invalid outcome");
         }
+        view.println(message);
+    }
+
+    private void showPossibleMoves() {
+        view.println(getPossibleMovesRangeMessage());
     }
 
     /**
@@ -82,8 +111,8 @@ public class Controller {
      */
     private String getErrorOutOfRangeMessage() {
         return String.format(ERROR_OUT_OF_RANGE_PATTERN,
-                model.getMinValue() - 1,
-                model.getMaxValue() + 1);
+                model.getCurrentMinValue() - 1,
+                model.getCurrentMaxValue() + 1);
     }
 
     /**
@@ -93,18 +122,18 @@ public class Controller {
      * @return message
      * @see ConsoleIOStringConstants#CURRENT_RANGE_PATTERN
      */
-    private String getCurrentRangeMessage() {
+    private String getPossibleMovesRangeMessage() {
         /*
-         * model.getMinValue() - 1 and model.getMinValue() + 1
+         * model.getCurrentMinValue() - 1 and model.getCurrentMinValue() + 1
          * because current range is printed in exclusive range
          * format. For example:
-         * model.getMinValue() == 0
-         * model.getMinValue() == 100
+         * model.getCurrentMinValue() == 0
+         * model.getCurrentMinValue() == 100
          * than range looks like (-1;101)
          */
         return String.format(CURRENT_RANGE_PATTERN,
-                model.getMinValue() - 1,
-                model.getMaxValue() + 1);
+                model.getCurrentMinValue() - 1,
+                model.getCurrentMaxValue() + 1);
     }
 
     /**

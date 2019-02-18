@@ -18,6 +18,7 @@ public final class MoreLessGame implements Model {
     private int max;
     private int inventedNumber;
     private int countMoves;
+    private GameMoveOutcome lastMoveOutcome = GameMoveOutcome.NO_MOVES_YET;
 
     /**
      * Creates a game with range [min;max]
@@ -54,7 +55,7 @@ public final class MoreLessGame implements Model {
      *
      * @return min value
      */
-    public int getMinValue() {
+    public int getCurrentMinValue() {
         return min;
     }
 
@@ -63,7 +64,7 @@ public final class MoreLessGame implements Model {
      *
      * @return max value
      */
-    public int getMaxValue() {
+    public int getCurrentMaxValue() {
         return max;
     }
 
@@ -71,24 +72,29 @@ public final class MoreLessGame implements Model {
      * Accepts user's move and throws an exception when move is out of range
      *
      * @param move user's move
-     * @return game move outcome
      * @throws OutOfRangeException
-     * @see Model.GameMoveOutcome
      */
-    public GameMoveOutcome makeMove(int move) throws OutOfRangeException {
+    public void makeMove(int move) throws OutOfRangeException {
         if ((move < min) || (move > max)) {
             throw new OutOfRangeException();
         }
         ++countMoves;
         if (move == inventedNumber) {
-            return GameMoveOutcome.WIN;
+            lastMoveOutcome = GameMoveOutcome.WIN;
         } else if (move < inventedNumber) {
             min = move + 1;
-            return GameMoveOutcome.MORE;
+            lastMoveOutcome = GameMoveOutcome.MORE;
         } else { // move > inventedNumber
             max = move - 1;
-            return GameMoveOutcome.LESS;
+            lastMoveOutcome = GameMoveOutcome.LESS;
         }
+    }
+
+    /**
+     * @return last move outcome {@link site.asem.model.Model.GameMoveOutcome}
+     */
+    public GameMoveOutcome getLastMoveOutcome() {
+        return lastMoveOutcome;
     }
 
     /**
@@ -96,7 +102,7 @@ public final class MoreLessGame implements Model {
      *
      * @return quantity of moves that user have made
      */
-    public int getMovesCount() {
+    public int getTotalMovesQuantity() {
         return countMoves;
     }
 }

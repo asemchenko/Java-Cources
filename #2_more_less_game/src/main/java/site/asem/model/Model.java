@@ -9,13 +9,15 @@
 package site.asem.model;
 
 public interface Model {
-    enum GameMoveOutcome {MORE, LESS, WIN}
+    enum GameMoveOutcome {MORE, LESS, WIN, NO_MOVES_YET}
 
-    int getMinValue();
+    int getCurrentMinValue();
 
-    int getMaxValue();
+    int getCurrentMaxValue();
 
-    GameMoveOutcome makeMove(int move) throws OutOfRangeException;
+    void makeMove(int move) throws OutOfRangeException;
 
-    int getMovesCount();
+    GameMoveOutcome getLastMoveOutcome();
+
+    int getTotalMovesQuantity();
 }

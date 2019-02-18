@@ -38,4 +38,10 @@ public class ConsoleIOStringConstants {
      * @see java.lang.String#format(String, Object...)
      */
     public static final String STATISTIC_PATTERN = "You have finished for %d moves";
+    public static final String WELCOME_MESSAGE = "Dear user! Welcome to the more/less game. In this game\n" +
+            "you need to guess number that computer has been invented.\n" +
+            "Computer will show you range of numbers. One of them\n" +
+            "is an invented number. When you make your assumption then\n" +
+            "computer will say is invented number more or less\n" +
+            "than yours. It will happen until you guess. Good luck!\n";
 }
