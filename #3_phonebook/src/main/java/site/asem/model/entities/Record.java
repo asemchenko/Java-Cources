@@ -7,9 +7,6 @@
 
 package site.asem.model.entities;
 
-import site.asem.model.entities.Address;
-import site.asem.model.entities.Group;
-
 import java.util.Date;
 import java.util.List;
 

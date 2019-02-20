@@ -1,0 +1,31 @@
+/*
+ * Copyright
+ * Author: Andrii Semchenko
+ * Project: #3_phonebook
+ * License: MIT
+ */
+
+package site.asem.view;
+
+public class TextConstants {
+    final String INPUTTING_RECORD_INFO = "=== Inputting record ===";
+    final String INPUT_FIRST_NAME = "Input first name: ";
+    final String INPUT_LAST_NAME = "Input last name: ";
+    final String INPUT_NICKNAME = "Input nick: ";
+    final String INPUT_PATRONYMIC = "Input patronymic name: ";
+    final String INPUT_GROUPS = "Input groups separated by space: ";
+    final String INPUT_MOBILE_PHONE = "Input mobile phone : ";
+    final String INPUT_EMAIL = "Input email: ";
+    // TODO add examples in some cases
+
+    final String INPUT_INDEX = "Input your index: ";
+    final String INPUT_CITY = "Input city: ";
+    final String INPUT_STREET = "Input street: ";
+    final String INPUT_HOUSE_NUMBER = "Input house number: ";
+    final String INPUT_FLAT_NUMBER = "Input flat number: ";
+    /* Is used as an argument for final String.format()*/
+    final String WRONG_INPUT_MESSAGE_FORMAT = "Your input does not fill requirements."
+            + " Probably there is an error. Regex '%s' Please try again";
+
+    final String SORRY_OCCUPIED_NICKNAME = "Sorry, entered nickname has been taken. Try another one. Good luck!";
+}

@@ -11,6 +11,7 @@ import site.asem.model.Model;
 
 import java.util.LinkedList;
 import java.util.List;
+
 /*
  * TODO
  *  Maybe PhoneBook should not implement Model
@@ -21,7 +22,7 @@ public class PhoneBook implements Model {
     private List<Record> records = new LinkedList<>();
 
     public void addRecord(Record record) throws NicknameDuplicateException {
-        if ( isNicknameOccupied(record.getNickname()) ) {
+        if (isNicknameOccupied(record.getNickname())) {
             // todo
             throw new NicknameDuplicateException();
         } else {

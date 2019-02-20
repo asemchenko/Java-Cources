@@ -7,13 +7,21 @@
 
 package site.asem.view;
 
-import static site.asem.view.TextConstants.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /**
  * Is used to print data to standard output
  *
  * @see System#out
  */
 public class ConsoleView {
+    private TextConstants textConstants;
+
+    public ConsoleView() {
+        loadTextConstants(Locale.getDefault());
+    }
+
     /**
      * Prints message to console without setting cursor to the next line
      *
@@ -33,6 +41,20 @@ public class ConsoleView {
     }
 
     public void printWrongInputMessage(String msg) {
-        println(String.format(WRONG_INPUT_MESSAGE_FORMAT, msg));
+        println(String.format(getTextConstants().WRONG_INPUT_MESSAGE_FORMAT, msg));
+    }
+
+    public TextConstants getTextConstants() {
+        return textConstants;
+    }
+
+    private void loadTextConstants(Locale locale) {
+        ResourceBundle bundle = ResourceBundle.getBundle("stringConstants",
+                locale);
+        textConstants = new TextConstants(bundle);
+    }
+
+    public void setLocale(Locale locale) {
+        loadTextConstants(locale);
     }
 }

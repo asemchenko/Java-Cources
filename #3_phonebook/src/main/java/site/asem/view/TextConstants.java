@@ -7,25 +7,43 @@
 
 package site.asem.view;
 
-public interface TextConstants {
-    String INPUTING_RECORD_INFO = "=== Inputing record ===";
-    String INPUT_FIRST_NAME = "Input first name: ";
-    String INPUT_LAST_NAME = "Input last name: ";
-    String INPUT_NICKNAME = "Input nick: ";
-    String INPUT_PATRONYMIC = "Input patronymic name: ";
-    String INPUT_GROUPS = "Input groups separated by space: ";
-    String INPUT_MOBILE_PHONE = "Input mobile phone : ";
-    String INPUT_EMAIL = "Input email: ";
-    // TODO add examples in some cases
+import java.util.ResourceBundle;
 
-    String INPUT_INDEX = "Input your index: ";
-    String INPUT_CITY = "Input city: ";
-    String INPUT_STREET = "Input street: ";
-    String INPUT_HOUSE_NUMBER = "Input house number: ";
-    String INPUT_FLAT_NUMBER = "Input flat number: ";
-    /* Is used as an argument for String.format()*/
-    String WRONG_INPUT_MESSAGE_FORMAT = "Your input does not fill requirements."
-            + " Probably there is an error. Regex '%s' Please try again";
+public final class TextConstants {
+    TextConstants(ResourceBundle resourceBundle) {
+        INPUTTING_RECORD_INFO = resourceBundle.getString("INPUTTING_RECORD_INFO");
+        INPUT_FIRST_NAME = resourceBundle.getString("INPUT_FIRST_NAME");
+        INPUT_LAST_NAME = resourceBundle.getString("INPUT_LAST_NAME");
+        INPUT_NICKNAME = resourceBundle.getString("INPUT_NICKNAME");
+        INPUT_PATRONYMIC = resourceBundle.getString("INPUT_PATRONYMIC");
+        INPUT_GROUPS = resourceBundle.getString("INPUT_GROUPS");
+        INPUT_MOBILE_PHONE = resourceBundle.getString("INPUT_MOBILE_PHONE");
+        INPUT_EMAIL = resourceBundle.getString("INPUT_EMAIL");
+        INPUT_INDEX = resourceBundle.getString("INPUT_INDEX");
+        INPUT_CITY = resourceBundle.getString("INPUT_CITY");
+        INPUT_STREET = resourceBundle.getString("INPUT_STREET");
+        INPUT_HOUSE_NUMBER = resourceBundle.getString("INPUT_HOUSE_NUMBER");
+        INPUT_FLAT_NUMBER = resourceBundle.getString("INPUT_FLAT_NUMBER");
+        WRONG_INPUT_MESSAGE_FORMAT = resourceBundle.getString("WRONG_INPUT_MESSAGE_FORMAT");
+        SORRY_OCCUPIED_NICKNAME = resourceBundle.getString("SORRY_OCCUPIED_NICKNAME");
+    }
 
-    String SORRY_OCCUPIED_NICKNAME = "Sorry, entered nickname has been taken. Try another one. Good luck!";
+    public final String INPUTTING_RECORD_INFO;
+    public final String INPUT_FIRST_NAME;
+    public final String INPUT_LAST_NAME;
+    public final String INPUT_NICKNAME;
+
+    public final String INPUT_PATRONYMIC;
+    public final String INPUT_GROUPS;
+    public final String INPUT_MOBILE_PHONE;
+    public final String INPUT_EMAIL;
+
+    public final String INPUT_INDEX;
+    public final String INPUT_CITY;
+    public final String INPUT_STREET;
+    public final String INPUT_HOUSE_NUMBER;
+    public final String INPUT_FLAT_NUMBER;
+    /* Is used as an argument for public final String.format()*/;
+    public final String WRONG_INPUT_MESSAGE_FORMAT;
+    public final String SORRY_OCCUPIED_NICKNAME;
 }

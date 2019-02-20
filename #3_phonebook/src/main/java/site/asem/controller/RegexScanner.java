@@ -22,7 +22,8 @@ class RegexScanner {
     /**
      * Is used to create RegexScanner that will read data from
      * scanner and transmit messages via view.
-     * @param view view
+     *
+     * @param view    view
      * @param scanner scanner
      */
     RegexScanner(ConsoleView view, Scanner scanner) {
@@ -35,8 +36,9 @@ class RegexScanner {
      * If entered string does not match regular expression defined by regex
      * than error message is shown and user is asked to enter data again
      * until correct response is given.
+     *
      * @param request prompt
-     * @param regex regular expression
+     * @param regex   regular expression
      * @return user's input
      */
     String getResponse(String request, String regex) {

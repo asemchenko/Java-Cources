@@ -12,14 +12,15 @@ import site.asem.model.entities.NicknameDuplicateException;
 import site.asem.model.entities.PhoneBook;
 import site.asem.model.entities.Record;
 import site.asem.view.ConsoleView;
-import site.asem.view.TextConstants;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Controller {
     private Model model;
     private ConsoleView view;
     private Scanner scanner;
+    private Locale locale = Locale.getDefault();
 
     public Controller(PhoneBook model, ConsoleView view) {
         this.model = model;
@@ -34,15 +35,20 @@ public class Controller {
         }
     }
 
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+        view.setLocale(this.locale);
+    }
+
     private void addNewRecord() {
-        RecordInputter recordInputter = new RecordInputter(view, scanner);
+        RecordInputter recordInputter = new RecordInputter(view, scanner, locale);
         Record record = recordInputter.inputRecord();
         do {
             try {
                 model.addRecord(record);
                 return;
             } catch (NicknameDuplicateException e) {
-                view.println(TextConstants.SORRY_OCCUPIED_NICKNAME);
+                view.println(view.getTextConstants().SORRY_OCCUPIED_NICKNAME);
                 record = recordInputter.reinputNickname(record);
             }
         } while (true);
