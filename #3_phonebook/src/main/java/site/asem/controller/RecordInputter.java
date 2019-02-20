@@ -7,9 +7,9 @@
 
 package site.asem.controller;
 
-import site.asem.model.Address;
-import site.asem.model.Group;
-import site.asem.model.Record;
+import site.asem.model.entities.Address;
+import site.asem.model.entities.Group;
+import site.asem.model.entities.Record;
 import site.asem.view.ConsoleView;
 
 import java.util.LinkedList;
@@ -23,7 +23,7 @@ import static site.asem.view.TextConstants.*;
 /**
  * An inputter which can create Record instance
  *
- * @see site.asem.model.Record
+ * @see Record
  */
 class RecordInputter {
     private ConsoleView view;
@@ -44,21 +44,34 @@ class RecordInputter {
         String firstName = sc.getResponse(INPUT_FIRST_NAME, FIRST_NAME_REGEX);
         String lastName = sc.getResponse(INPUT_LAST_NAME, LAST_NAME_REGEX);
         String patronymic = sc.getResponse(INPUT_PATRONYMIC, PATRONYMIC_REGEX);
+        String nickname = sc.getResponse(INPUT_NICKNAME, NICKNAME_REGEX);
         List<Group> groups = inputGroups();
         String mobilePhone = sc.getResponse(INPUT_MOBILE_PHONE,
                 MOBILE_PHONE_REGEX);
         String email = sc.getResponse(INPUT_EMAIL, EMAIL_REGEX);
         Address address = inputAddress();
-
         Record record = new Record();
         record.setFirstName(firstName);
         record.setLastName(lastName);
         record.setPatronymic(patronymic);
+        record.setNickname(nickname);
         record.setGroups(groups);
         record.setMobilePhone(mobilePhone);
         record.setEmail(email);
         record.setAddress(address);
         return record;
+    }
+
+    /**
+     * Gets from user nickname that matches appropriate regex
+     * and stores it DIRECTLY into basis data structure
+     * @param basis object to be stored nickname into
+     * @return basis with new nickname
+     */
+    Record reinputNickname(Record basis) {
+        String nickname = sc.getResponse(INPUT_NICKNAME, NICKNAME_REGEX);
+        basis.setNickname(nickname);
+        return basis;
     }
 
     /**

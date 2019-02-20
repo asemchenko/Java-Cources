@@ -11,6 +11,7 @@ public interface RegexContainer {
     String FIRST_NAME_REGEX = "^[a-zA-Z]+(([\\'\\,\\.\\-][a-zA-Z])?[a-zA-Z]*)*$";
     String LAST_NAME_REGEX = "^[a-zA-Z]+(([\\'\\,\\.\\-][a-zA-Z])?[a-zA-Z]*)*$";
     String PATRONYMIC_REGEX = "^[a-zA-Z]+(([\\'\\,\\.\\-][a-zA-Z])?[a-zA-Z]*)*$";
+    String NICKNAME_REGEX = "^[a-zA-Z0-9_]+$";
     String GROUP_REGEX = "RELATIVES|FRIENDS|COLLEAGUES|OTHER";
     String GROUPS_REGEX = "(" + GROUP_REGEX + ")+";
     String MOBILE_PHONE_REGEX = "^\\+[1-9][0-9]{3,14}$";

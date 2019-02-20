@@ -33,7 +33,6 @@ public class ConsoleView {
     }
 
     public void printWrongInputMessage(String msg) {
-        // TODO implement msg printing
-        println(WRONG_INPUT_MESSAGE);
+        println(String.format(WRONG_INPUT_MESSAGE_FORMAT, msg));
     }
 }

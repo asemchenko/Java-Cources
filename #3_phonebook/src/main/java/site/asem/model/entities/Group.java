@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-package site.asem.model;
+package site.asem.model.entities;
 
 public enum Group {
     RELATIVES, FRIENDS, COLLEAGUES, OTHER

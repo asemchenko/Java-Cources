@@ -9,7 +9,7 @@
 package site.asem;
 
 import site.asem.controller.Controller;
-import site.asem.model.PhoneBook;
+import site.asem.model.entities.PhoneBook;
 import site.asem.view.ConsoleView;
 
 public class Main {

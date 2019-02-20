@@ -5,7 +5,10 @@
  * License: MIT
  */
 
-package site.asem.model;
+package site.asem.model.entities;
+
+import site.asem.model.entities.Address;
+import site.asem.model.entities.Group;
 
 import java.util.Date;
 import java.util.List;
@@ -19,6 +22,7 @@ public class Record {
     private String firstName;
     private String lastName;
     private String patronymic;
+    private String nickname;
 
     private List<Group> groups;
     private String mobilePhone;
@@ -65,5 +69,50 @@ public class Record {
     public void setAddress(Address address) {
         this.address = address;
         updateLastModificationDate();
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+        updateLastModificationDate();
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public Group[] getGroups() {
+        return (Group[]) groups.toArray();
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public Date getCreationDate() {
+        return new Date(creationDate.getTime());
+    }
+
+    public Date getLastModificationDate() {
+        return new Date(lastModificationDate.getTime());
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 }
