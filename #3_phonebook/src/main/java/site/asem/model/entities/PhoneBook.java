@@ -23,8 +23,7 @@ public class PhoneBook implements Model {
 
     public void addRecord(Record record) throws NicknameDuplicateException {
         if (isNicknameOccupied(record.getNickname())) {
-            // todo
-            throw new NicknameDuplicateException();
+            throw new NicknameDuplicateException(record, "This nickname already exists");
         } else {
             records.add(record);
         }

@@ -48,8 +48,10 @@ public class Controller {
                 model.addRecord(record);
                 return;
             } catch (NicknameDuplicateException e) {
+                Record caughtRecord = e.getRecord();
+                view.println(caughtRecord.toString());
                 view.println(view.getTextConstants().SORRY_OCCUPIED_NICKNAME);
-                record = recordInputter.reinputNickname(record);
+                record = recordInputter.reinputNickname(caughtRecord);
             }
         } while (true);
     }
