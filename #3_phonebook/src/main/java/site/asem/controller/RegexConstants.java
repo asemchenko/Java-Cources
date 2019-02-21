@@ -16,7 +16,7 @@ public final class RegexConstants {
         PATRONYMIC_REGEX = resourceBundle.getString("PATRONYMIC_REGEX");
         NICKNAME_REGEX = resourceBundle.getString("NICKNAME_REGEX");
         GROUP_REGEX = resourceBundle.getString("GROUP_REGEX");
-        GROUPS_REGEX = "(" + GROUP_REGEX + ")+";
+        GROUPS_REGEX = String.format("(%s)( (%s))*", GROUP_REGEX, GROUP_REGEX) ;
         MOBILE_PHONE_REGEX = resourceBundle.getString("MOBILE_PHONE_REGEX");
         EMAIL_REGEX = resourceBundle.getString("EMAIL_REGEX");
 

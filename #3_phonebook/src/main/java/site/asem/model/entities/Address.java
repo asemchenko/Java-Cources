@@ -13,4 +13,15 @@ public final class Address {
     public String street;
     public String houseNumber;
     public String flatNumber;
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "index='" + index + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", houseNumber='" + houseNumber + '\'' +
+                ", flatNumber='" + flatNumber + '\'' +
+                '}';
+    }
 }

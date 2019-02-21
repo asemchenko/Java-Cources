@@ -112,4 +112,18 @@ public class Record {
     public String getNickname() {
         return nickname;
     }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", groups=" + groups +
+                ", mobilePhone='" + mobilePhone + '\'' +
+                ", email='" + email + '\'' +
+                ", address=" + address +
+                '}';
+    }
 }
