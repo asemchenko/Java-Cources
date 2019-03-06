@@ -1,0 +1,39 @@
+<web-app>
+    <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>site.asem.controller.SearchServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <jsp-file>/jsp/index.jsp</jsp-file>
+    </servlet>
+
+    <servlet>
+        <servlet-name>IdSearch</servlet-name>
+        <servlet-class>site.asem.controller.IdSearch</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>IdSearch</servlet-name>
+        <url-pattern>/publication</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/find</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/static/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>
