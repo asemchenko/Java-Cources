@@ -1,8 +1,6 @@
 package site.asem;
-
-import static org.apache.commons.text.StringEscapeUtils.escapeHtml4;
-
 import site.asem.model.Model;
+import site.asem.model.dao.jdbc.JdbcDaoFactory;
 import site.asem.model.entities.NicknameDuplicateException;
 import site.asem.model.entities.PhoneBook;
 import site.asem.model.entities.Record;
@@ -18,7 +16,7 @@ import java.util.Locale;
 
 
 public class SimpleServlet extends HttpServlet {
-    private static Model model = new PhoneBook();
+    private static Model model = new PhoneBook(JdbcDaoFactory.getInstance().createRecordDao());
     private TextConstants textConstants = TextConstants.getForLocale(Locale.ENGLISH);
     private RegexConstants regexConstants = RegexConstants.getForLocale(Locale.ENGLISH);
 //    static {
@@ -58,11 +56,11 @@ public class SimpleServlet extends HttpServlet {
     }
     private Record getRecord(HttpServletRequest req) {
         Record record = new Record();
-        record.setFirstName(escapeHtml4(req.getParameter("firstName")));
-        record.setLastName(escapeHtml4(req.getParameter("lastName")));
-        record.setPatronymic(escapeHtml4(req.getParameter("patronymic")));
-        record.setMobilePhone(escapeHtml4(req.getParameter("mobilePhone")));
-        String nickname = escapeHtml4(req.getParameter("nickname"));
+        record.setFirstName(/*escapeHtml4(*/req.getParameter("firstName"/*)*/));
+        record.setLastName(/*escapeHtml4(*/req.getParameter("lastName"/*)*/));
+        record.setPatronymic(/*escapeHtml4(*/req.getParameter("patronymic"/*)*/));
+        record.setMobilePhone(/*escapeHtml4(*/req.getParameter("mobilePhone"/*)*/));
+        String nickname = /*escapeHtml4(*/req.getParameter("nickname"/*)*/);
         record.setNickname(nickname);
         return record;
     }

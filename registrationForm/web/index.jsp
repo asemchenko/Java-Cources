@@ -1,14 +1,7 @@
 <%@ page import="site.asem.model.entities.Record" %>
 <%@ page import="site.asem.view.TextConstants" %>
 <%@ page import="site.asem.view.RegexConstants" %>
-<%@ page import="org.apache.commons.text.StringEscapeUtils" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: asem
-  Date: 25.02.19
-  Time: 22:47
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.Collection" %>
 <%!
     TextConstants getLang(HttpServletRequest request) {
         return (TextConstants) request.getAttribute("lang");
@@ -18,8 +11,8 @@
         return (RegexConstants) request.getAttribute("recordRegex");
     }
 
-    Record[] getRecords(HttpServletRequest request) {
-        return (Record[]) request.getAttribute("records");
+    Collection<Record> getRecords(HttpServletRequest request) {
+        return (Collection<Record>) request.getAttribute("records");
     }
 
     Record getPrevRecord(HttpServletRequest request) {
@@ -77,7 +70,7 @@
 </form>
 <hr style="height: 2px; color: black; background-color: black;">
 <%
-    if (getRecords(request).length == 0) {
+    if (getRecords(request).size() == 0) {
         out.println("<h1 style=\"text-align: center;\">Phone book is empty</h1>");
     } else { %>
 <h1 style="text-align: center;">Phone book content</h1>

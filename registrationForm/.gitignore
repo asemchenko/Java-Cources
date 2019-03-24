@@ -1,0 +1,3 @@
+**/database_config.properties
+src/main/resources/database_config.properties
+.idea/dataSources.xml

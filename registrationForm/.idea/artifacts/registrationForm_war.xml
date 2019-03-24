@@ -5,7 +5,7 @@
       <element id="artifact" artifact-name="registrationForm:war exploded" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="lib">
-          <element id="library" level="project" name="org.apache.commons:commons-text:1.6" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.15" />
         </element>
       </element>
     </root>

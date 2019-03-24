@@ -8,9 +8,9 @@
 package site.asem.model.entities;
 
 import site.asem.model.Model;
+import site.asem.model.dao.RecordDao;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Collection;
 
 /*
  * TODO
@@ -19,23 +19,28 @@ import java.util.List;
  *  for this purpose
  */
 public class PhoneBook implements Model {
-    private List<Record> records = new LinkedList<>();
+    private RecordDao recordDao;
+
+    public PhoneBook(RecordDao recordDao) {
+        this.recordDao = recordDao;
+    }
+
     @Override
     public void addRecord(Record record) throws NicknameDuplicateException {
         if (isNicknameOccupied(record.getNickname())) {
             throw new NicknameDuplicateException(record, "This nickname already exists");
         } else {
-            records.add(record);
+            recordDao.create(record);
         }
     }
 
     @Override
-    public Record[] getAllRecords() {
-        return records.toArray(new Record[0]);
+    public Collection<Record> getAllRecords() {
+        return recordDao.findAll();
     }
 
     private boolean isNicknameOccupied(String nickname) {
-        for (Record r : records) {
+        for (Record r : getAllRecords()) {
             if (r.getNickname().equals(nickname)) {
                 return true;
             }
