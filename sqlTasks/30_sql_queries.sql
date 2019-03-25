@@ -251,31 +251,31 @@ FROM pages
 WHERE p_parent IS NULL;
 
 -- task 29
-WITH t AS
-       (SELECT banners.b_id,
-               b_url,
-               count(p.p_id) AS pages_count
-        FROM banners
-               INNER JOIN m2m_banners_pages m2mbp ON banners.b_id = m2mbp.b_id
-               INNER JOIN pages p ON m2mbp.p_id = p.p_id
-        GROUP BY banners.b_id,
-                 b_url)
-SELECT *
-FROM t
-WHERE pages_count IN
-      (SELECT max(pages_count)
-       FROM t);
+
+SELECT b_id,
+       b_url,
+       pages_count
+FROM (SELECT banners.b_id,
+             b_url,
+             count(p.p_id)                       AS pages_count,
+             rank() OVER(
+                    ORDER BY count(p.p_id) DESC) AS rnk
+      FROM banners
+             INNER JOIN m2m_banners_pages m2mbp ON banners.b_id = m2mbp.b_id
+             INNER JOIN pages p ON m2mbp.p_id = p.p_id
+      GROUP BY banners.b_id,
+               b_url) t
+WHERE rnk = 1;
 
 -- task 30
-WITH t AS
-       (SELECT p_name,
-               count(b_id) AS banners_amount
-        FROM pages
-               INNER JOIN m2m_banners_pages m2mbp ON pages.p_id = m2mbp.p_id
-        GROUP BY m2mbp.p_id,
-                 p_name)
-SELECT *
-FROM t
-WHERE banners_amount IN
-      (SELECT max(banners_amount)
-       FROM t);
+
+SELECT p_name,
+       banners_amount
+FROM (SELECT p_name,
+             count(b_id)                  AS banners_amount,
+             rank() over(
+                    ORDER BY count(b_id)) AS rnk
+      FROM pages
+             INNER JOIN m2m_banners_pages m2mbp ON pages.p_id = m2mbp.p_id
+      GROUP BY m2mbp.p_id) t
+WHERE rnk = 1;
